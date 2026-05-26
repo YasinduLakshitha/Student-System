@@ -8,9 +8,20 @@ const db = require("./config/db");
 const app = express();
 const authRoutes = require("./routes/authRoutes");
 
+// TODO: Fix studentRoutes export issue
+// const studentRoutes = require("./routes/studentRoutes");
+
 app.use(cors());
 app.use(express.json());
+
+// Debug middleware
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path}`);
+    next();
+});
+
 app.use("/api/auth", authRoutes);
+// app.use("/api/student", studentRoutes);
 
 app.get("/", (req, res) => {
     res.send("Backend Server Running");
