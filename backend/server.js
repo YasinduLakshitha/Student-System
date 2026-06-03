@@ -7,9 +7,7 @@ const db = require("./config/db");
 
 const app = express();
 const authRoutes = require("./routes/authRoutes");
-
-// TODO: Fix studentRoutes export issue
-// const studentRoutes = require("./routes/studentRoutes");
+const studentRoutes = require("./routes/studentRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -21,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/student", studentRoutes);
+app.use("/api/student", studentRoutes);
 
 app.get("/", (req, res) => {
     res.send("Backend Server Running");
